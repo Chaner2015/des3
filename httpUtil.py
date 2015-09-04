@@ -5,7 +5,13 @@ import json
 class httpClient:
    client = None
    Timeout = 30
-   port = 8080
+   port = 80
+
+   def __init__(self,port=None,timeout=None):
+       if timeout != None:
+          self.Timeout = timeout
+       if port != None:
+          self.port = port
    
    def get(self,url,path):
        self.client = httplib.HTTPConnection(url,self.port,timeout=self.Timeout);
