@@ -22,7 +22,8 @@ class httpClient:
 
    def post(self,url,path,params):
        self.client = httplib.HTTPConnection(url,self.port,timeout=self.Timeout)
-       self.client.request("POST",path,body=params)
+       headers = {"Content-type":"application/x-www-form-urlencoded","Accept":"application/json"}
+       self.client.request("POST",path,params,headers)
        res = self.client.getresponse()
        #self.client.close()
        return res
@@ -31,7 +32,7 @@ class httpClient:
        self.client.close()
 
 if __name__ == "__main__":
-   client = httpClient()
+   client = httpClient(8080)
    res = client.get("127.0.0.1","/")
    params = {"uname":"aaa","pwd":"123456"}
    #print res.read()
