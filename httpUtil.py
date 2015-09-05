@@ -22,7 +22,7 @@ class httpClient:
 
    def post(self,url,path,params):
        self.client = httplib.HTTPConnection(url,self.port,timeout=self.Timeout)
-       self.client.request("POST",path,params)
+       self.client.request("POST",path,body=params)
        res = self.client.getresponse()
        #self.client.close()
        return res
